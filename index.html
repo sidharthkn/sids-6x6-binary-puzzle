@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 29/4/20, v5: Board text renamed. -->
+<!-- Sidharth K.N, 7/4/20, v6: Nested Loop with vars for rows and columns (j and i respectively). -->
 
 <html>
 <head>
@@ -11,35 +11,18 @@
 		var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 		var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 
-        function LoadGrid(G) {
-			var Row = 6;
-			var Col = 6;
+        function LoadGrid(G) { //sets initial problem
+			var Row = 6; //sets rows
+			var Col = 6; //sets columns
 			var Grid = [];
 			
-			for (let i = 0; i < Row; i++) {
-				document.getElementById('A'+ (i+1)).value = G[i]
-			}
-			for (let i = 0; i < Row; i++) {
-				document.getElementById('B'+ (i+1)).value = G[Col + i]
-			}
-			for (let i = 0; i < Row; i++) {
-				document.getElementById('C'+ (i+1)).value = G[2 * Col + i]
-			}
-			for (let i = 0; i < Row; i++) {
-				document.getElementById('D'+ (i+1)).value = G[3 * Col + i]
-			}
-			for (let i = 0; i < Row; i++) {
-				document.getElementById('E'+ (i+1)).value = G[4 * Col + i]
-			}
-            
-
-            document.getElementById('F1').value = "";
-            document.getElementById('F2').value = 0;
-            document.getElementById('F3').value = "";
-            document.getElementById('F4').value = "";
-            document.getElementById('F5').value = 1;
-            document.getElementById('F6').value = 1;
+			for (let j = 0; j < Row; j++) { //row loop, like the y co-ordinates
+				for (let i =0; i < Col; i++){ //column loop, like the x co-ordinates
+					document.getElementById('B' + (i+1) + (j+1)).value = G[j*Col+1];//nested loops 
+				}
+			} 
         }
+		
     </script>
     <style type="text/css">
         * {
