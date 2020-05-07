@@ -1,48 +1,38 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 7/4/20, v3: Polished borders. -->
+<!-- Sidharth K.N, 7/4/20, v4: Looping the grunt load. -->
 
 <html>
 <head>
     <meta charset="utf-8">
     <title>Binary Puzzle 6x6</title>
     <script type="text/javascript">  
+		
+		var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+		var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+		var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 
-        //  Basic Visual Studio Setup 
+        function LoadGrid(G) {
+			var Row = 6;
+			var Col = 6;
+			var Grid = [];
+			
+			for (let i = 0; i < Row; i++) {
+				document.getElementById('A'+ (i+1)).value = G[i]
+			}
+			for (let i = 0; i < Row; i++) {
+				document.getElementById('B'+ (i+1)).value = G[Col + i]
+			}
+			for (let i = 0; i < Row; i++) {
+				document.getElementById('C'+ (i+1)).value = G[2 * Col + i]
+			}
+			for (let i = 0; i < Row; i++) {
+				document.getElementById('D'+ (i+1)).value = G[3 * Col + i]
+			}
+			for (let i = 0; i < Row; i++) {
+				document.getElementById('E'+ (i+1)).value = G[4 * Col + i]
+			}
+            
 
-        //  May you can mount your site on GitHub and practice pushing changes??
-
-        function initialNumbers() {                    // sets the initial problem
- 
-            document.getElementById('A1').value = 1;   // Hard code
-            document.getElementById('A2').value = "";  // Hard code
-            document.getElementById('A3').value = 0;
-            document.getElementById('A4').value = "";
-            document.getElementById('A5').value = 0;
-            document.getElementById('A6').value = 0;
-            document.getElementById('B1').value = "";
-            document.getElementById('B2').value = 1;
-            document.getElementById('B3').value = "";
-            document.getElementById('B4').value = 0;
-            document.getElementById('B5').value = 0;
-            document.getElementById('B6').value = "";
-            document.getElementById('C1').value = "";
-            document.getElementById('C2').value = "";
-            document.getElementById('C3').value = "";
-            document.getElementById('C4').value = "";
-            document.getElementById('C5').value = "";
-            document.getElementById('C6').value = 0;
-            document.getElementById('D1').value = 0;
-            document.getElementById('D2').value = "";
-            document.getElementById('D3').value = "";
-            document.getElementById('D4').value = 1;
-            document.getElementById('D5').value = "";
-            document.getElementById('D6').value = "";
-            document.getElementById('E1').value = 1;
-            document.getElementById('E2').value = 0;
-            document.getElementById('E3').value = "";
-            document.getElementById('E4').value = 1;
-            document.getElementById('E5').value = 1;
-            document.getElementById('E6').value = "";
             document.getElementById('F1').value = "";
             document.getElementById('F2').value = 0;
             document.getElementById('F3').value = "";
@@ -69,7 +59,7 @@
         }
     </style>
 </head>
-<body onload="initialNumbers()">
+<body onload="LoadGrid(G3)">
 
     <!--  notes about modules  -->
 	
