@@ -1,32 +1,11 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 7/4/20, v6: Nested Loop with vars for rows and columns (j and i respectively). -->
+<!-- Sidharth K.N, 10/5/20, v7: Creating the 2D Array -->
 
 <html>
 <head>
     <meta charset="utf-8">
     <title>Binary Puzzle 6x6</title>
-    <script type="text/javascript">  
-		
-		var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
-		var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-		var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-
-        function LoadGrid(G) { //sets initial problem
-			var Row = 6; //sets rows
-			var Col = 6; //sets columns
-			var Grid = [];
-			
-
-			for (let j = 0; j < Row; j++) { //row loop, like the y co-ordinates
-				for (let i =0; i < Col; i++){ //column loop, like the x co-ordinates
-					document.getElementById('B' + (i+1) + (j+1)).value = G[j*Col+1];//nested loops 
-				}
-			} 
-		}
-
-
-    </script>
-    <style type="text/css">
+	    <style type="text/css">
         * {
             padding: 0;
             border-collapse: collapse;
@@ -43,8 +22,32 @@
             border: 1px solid #ED2428;
         }
     </style>
+	<script type="text/javascript">  
+		
+		var G1 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+		var G2 = [null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+		var G3 = [null, null, 1, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+
+        function LoadGrid(G) { //sets initial problem
+			var Row = 6; //sets rows
+			var Col = 6; //sets columns
+			var Grid = [];
+			
+			for (let j = 0; j < Row; j++) { //Row loop - like the "y" coordinates
+				for (let i = 0; i < Col; i++) { //Column loop - like the "x" coordinates
+					GridCol.push(G[j * Col + i]); // load the column elements into this temporary array
+                }
+                Grid.push(GridCol); // push a column array for each row
+                GridCol = []; // clear this array ready for the next row
+            }
+            document.getElementById('arrayView').value = Grid;
+            document.getElementById('arrayView1D').value = Grid[4][3]; //Row 5, Column 4
+				}
+			} 
+		}
+    </script>
 </head>
-<body onload="LoadGrid(G3)">
+<body onload="LoadGrid(G4)">
 
     <!--  notes about modules  -->
 	
@@ -144,5 +147,12 @@
                 <input id="B66" type="text" class="gameboard" /></td>
         </tr>
     </table>
+	<br />
+	View of the 2D array:<br />
+    <textarea id="arrayView2D" cols="30" rows="5"></textarea><br />
+    <br />
+    View of 1 element:<br />
+    <textarea id="arrayViewCell" cols="30" rows="2"></textarea>
+	<br />
 </body>
 </html>
