@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 13/5/20, v9: Code for Solve buttons -->
+<!-- Sidharth K.N, 21/5/20, v9p2: Fixing up Solve Repeat -->
 
 <html>
 <head>
@@ -64,16 +64,14 @@
                 }
             }
         }
-		function BinaryPuzzleSolver() {
-			//Grid is already loaded
-			//Will later change to "Solved = False"
-			let i = 0;
-			Solved = false;
-			while(i < 3){
-				SolvePuzzle();
-				window.alert('SolvePuzzle call number' + i + '.');
-				i++;
-			}
+		function BinaryPuzzleSolver() {  //Code the top level module here
+            let i = 1;          //temporary variable until true false working
+            Solved = false;     //initial setting
+            while (Solved == false && i < 3) {
+                Solved = SolvePuzzle(Grid);
+                window.alert('Main "BinaryPuzzleSolver" - Solved = ' + Solved + '. Loop # ' + i + '.');
+                i++;
+            }
         }
         function SolvePuzzle(G2D) {
 			if (G2D[0][1] == 1){ //row 1, col 2
