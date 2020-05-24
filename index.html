@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 24/5/20, v14: Coding the "Complete" button -->
+<!-- Sidharth K.N, 24/5/20, v15: Coding the "Solve Once" button -->
 
 <html>
 <head>
@@ -81,12 +81,13 @@
             }
         }
         function SolvePuzzle(G2D) {
-			if (G2D[0][1] == 1){ //row 1, col 2
-				window.alert('Sub "SolvePuzzle" TEST MSG ONLY - 1 in row 1 col 2 - "solved". ');
-				return true;
+			SolveNumberPairs();
+			SolveNumberTrios();
+			if(CompleteRowsCols()) {
+				return true
+			} else {
+				return false;
 			}
-            window.alert('Sub "SolvePuzzle" TEST MSG ONLY - "Not solved yet"!');
-			return false;
         }
         function SolveNumberPairs(){ //2 clicks to solve 
             SolveRowPairs();
@@ -209,7 +210,7 @@
 	<!-- 7/5 Changed LoadGrid() to LoadGrid(G4) -->
     <form id="input">
         <h1>6x6 Binary Puzzle Game</h1>
-        <h2>V14: The "Complete" Button</h2>
+        <h2>V15: The "Solve Once" Button</h2>
 		<p>Return to <a href="index.html"> home </a></p>
 		<p>    
 			<select id="cboPuzNo" onchange="LoadGrid(eval(value))">
