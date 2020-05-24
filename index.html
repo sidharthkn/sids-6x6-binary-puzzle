@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 21/5/20, v10: Coding -->
+<!-- Sidharth K.N, 21/5/20, v11: Solve Column Pairs -->
 
 <html>
 <head>
@@ -103,11 +103,25 @@
 				}
         	}
 			document.getElementById('arrayView2D').value = Grid;
-            document.getElementById('arrayViewCell').value = Grid[4][3]; //Row 1, Column 4
 			DisplayGrid(Grid);
 		}
 		function SolveColPairs() {
-            window.alert('SolveColPairs has not been coded yet');
+            GridSize = 6;
+			for (let Col = 0; Col < GridSize; Col++) {
+				for (let Row = 0; Row < GridSize - 1; Row++) {
+					if (Grid[Row][Col] !== null && Grid[Row][Col] == Grid[Row + 1][Col]){
+						if (Row > 0) {
+							Grid[Row - 1][Col] = (1 - Grid[Row][Col]);
+							//Grid[Row][Col - 1]
+						}
+						if (Row < GridSize - 2) {
+							Grid[Row + 2][Col] = (1 - Grid[Row][Col]);
+						}
+					}
+				}
+        	}
+			document.getElementById('arrayView2D').value = Grid[0];
+			DisplayGrid(Grid);
         }
 		function SolveNumberTrios() {
             window.alert('SolveNumberTrios has not been coded yet');
@@ -124,7 +138,7 @@
 	<!-- 7/5 Changed LoadGrid() to LoadGrid(G4) -->
     <form id="input">
         <h1>6x6 Binary Puzzle Game</h1>
-        <h2>V10: Solve Row Pairs, from Q22</h2>
+        <h2>V11: Solve Column Pairs</h2>
 		<p>Return to <a href="index.html"> home </a></p>
 		<p>    
 			<select id="cboPuzNo" onchange="LoadGrid(eval(value))">
