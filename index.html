@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Sidharth K.N, 21/5/20, v11: Solve Column Pairs -->
+<!-- Sidharth K.N, 24/5/20, v12: Coding the "Pairs" button -->
 
 <html>
 <head>
@@ -46,16 +46,18 @@
 		
         function LoadGrid(G) {
             var GridCol = [];
+			var arr2D = ""; //24/5 changing the array view
             Grid = [];
 
             for (let j = 0; j < Row; j++) { //Row loop - like the "y" coordinates
                 for (let i = 0; i < Col; i++) { //Column loop - like the "x" coordinates
                     GridCol.push(G[j * Col + i]); // load the column elements into this temporary array
                 }
+				arr2D = arr2D + "Grid[" + j + "] = [" + GridCol + "]" + "\n";
                 Grid.push(GridCol); // push a column array for each row
                 GridCol = []; // clear this array ready for the next row
             }
-            document.getElementById('arrayView2D').value = Grid;
+            document.getElementById('arrayView2D').value = arr2D;
             document.getElementById('arrayViewCell').value = Grid[4][3]; //Row 1, Column 4
 			DisplayGrid(Grid);
 		}
@@ -84,8 +86,9 @@
             window.alert('Sub "SolvePuzzle" TEST MSG ONLY - "Not solved yet"!');
 			return false;
         }
-        function SolveNumberPairs() {
-            window.alert('SolveNumberPairs has not been coded yet');
+        function SolveNumberPairs(){ //2 clicks to solve 
+            SolveRowPairs();
+			SolveColPairs();
         }
         function SolveRowPairs() {
 			GridSize = 6;
@@ -102,7 +105,6 @@
 					}
 				}
         	}
-			document.getElementById('arrayView2D').value = Grid;
 			DisplayGrid(Grid);
 		}
 		function SolveColPairs() {
@@ -120,7 +122,6 @@
 					}
 				}
         	}
-			document.getElementById('arrayView2D').value = Grid[0];
 			DisplayGrid(Grid);
         }
 		function SolveNumberTrios() {
@@ -138,7 +139,7 @@
 	<!-- 7/5 Changed LoadGrid() to LoadGrid(G4) -->
     <form id="input">
         <h1>6x6 Binary Puzzle Game</h1>
-        <h2>V11: Solve Column Pairs</h2>
+        <h2>V12: The "Pairs" Button</h2>
 		<p>Return to <a href="index.html"> home </a></p>
 		<p>    
 			<select id="cboPuzNo" onchange="LoadGrid(eval(value))">
@@ -260,8 +261,9 @@
         </tr>
     </table>
 	<br />
-	View of the 2D array:<br />
-    <textarea id="arrayView2D" cols="30" rows="5"></textarea><br />
+	View of the original 2D array:<br />
+    <textarea id="arrayView2D" cols="30" rows="7"></textarea>
+	<br />
     <br />
     View of 1 element:<br />
     <textarea id="arrayViewCell" cols="30" rows="2"></textarea>
